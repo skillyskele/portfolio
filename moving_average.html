@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Average Filter</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Add your stylesheet here -->
+</head>
+
+<body>
+    <header>
+        <h1>Moving Average Filter</h1>
+        <p>Exploring the implementation and analysis of the moving average filter for embedded systems.</p>
+    </header>
+
+    <!--<img src="images/frequency_response.png" alt="Frequency Response" />-->
+    <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<p>Here is an equation: \( y[i] = \frac{1}{M} \sum_{j=0}^{M-1} x[i+j] \)</p>
+-->
+
+    <main>
+        <!-- Context Section -->
+        <section id="context">
+            <h2>Context: When is a Moving Average Filter Used?</h2>
+            <p>The goal of this project is to implement a noise-reduction digital signal processing algorithm optimized
+                for embedded systems, with a focus on performance, efficiency, and practical implementation in C. The
+                project also analyzes the trade-offs and benefits of the chosen algorithm in terms of computational
+                complexity, accuracy, and real-world usability.</p>
+            <p>The algorithm selected for this project is the moving average filter, a fundamental tool in digital
+                signal processing. Its performance will be compared against more sophisticated filters, such as the
+                Gaussian filter and the Blackman filter, to highlight its strengths and limitations in different
+                contexts.</p>
+        </section>
+
+        <!-- Mathematical Representation -->
+        <section id="math-representation">
+            <h2>Mathematical Representation</h2>
+            <p>The moving average filter works by averaging a specified number of points from the input signal to
+                produce each point in the output signal. Mathematically, it is represented as:</p>
+            <div class="equation-placeholder">
+                <!-- Placeholder for the equation -->
+                <p>Insert mathematical equation here.</p>
+            </div>
+            <p>Here, <code>M</code> represents the number of points included in the average, <code>x[i]</code> is the
+                input signal, and <code>y[i]</code> is the resulting output signal. The moving average filter is
+                equivalent to a convolution with a rectangular pulse, where the pulse has an area of one and a width
+                corresponding to the number of samples averaged.</p>
+        </section>
+
+        <!-- C Code Section -->
+        <section id="c-code">
+            <h2>Implementation in C</h2>
+            <p>The implementation in C demonstrates the filter's simplicity and efficiency. Below is the key portion of
+                the code:</p>
+            <pre><code>
+#include <stdio.h>
+
+void moving_average_filter(float *input, float *output, int num_samples, int window_size) {
+    float accumulator = 0.0;
+
+    // Initialize the accumulator with the first `window_size` points
+    for (int i = 0; i < window_size; i++) {
+        accumulator += input[i];
+    }
+    output[window_size / 2] = accumulator / window_size;
+
+    // Sliding window implementation
+    for (int i = window_size / 2 + 1; i < num_samples - window_size / 2; i++) {
+        accumulator = accumulator - input[i - window_size / 2 - 1] + input[i + window_size / 2];
+        output[i] = accumulator / window_size;
+    }
+}
+            </code></pre>
+        </section>
+
+        <!-- Filter Results -->
+        <section id="filter-results">
+            <h2>Filter Results and Analysis</h2>
+            <p>The following plots illustrate the performance of the moving average filter:</p>
+            <ul>
+                <li>Original noisy signal compared to the clean signal.</li>
+                <li>Filtered signal overlayed on the original signal.</li>
+                <li>Frequency response of the filter, showing magnitude response.</li>
+            </ul>
+            <div class="image-placeholder">
+                <!-- Placeholder for signal images -->
+                <p>Insert time-domain plots here.</p>
+            </div>
+            <div class="image-placeholder">
+                <!-- Placeholder for frequency response image -->
+                <p>Insert frequency response plot here.</p>
+            </div>
+        </section>
+
+        <!-- Tradeoffs Section -->
+        <section id="tradeoffs">
+            <h2>Trade-offs and Frequency Response</h2>
+            <p>The frequency response of the moving average filter is calculated as the Fourier transform of the
+                rectangular pulse. While the filter provides effective smoothing, its slow roll-off and poor attenuation
+                of higher frequencies make it a less effective low-pass filter. Larger sample windows improve noise
+                reduction but introduce slower settling times.</p>
+        </section>
+
+        <!-- Efficient Implementation -->
+        <section id="efficient-implementation">
+            <h2>Efficient Implementation on Embedded Systems</h2>
+            <p>The moving average filter is computationally efficient, requiring only addition and subtraction
+                operations. Its recursive implementation updates the output using overlapping calculations,
+                significantly reducing computational complexity:</p>
+            <pre><code>
+y[51] = y[50] + x[54] - x[47];
+            </code></pre>
+            <p>This optimization reduces the time complexity from <code>O(M * N)</code> to <code>O(N)</code>, making it
+                ideal for real-time embedded systems with limited resources.</p>
+        </section>
+
+        <!-- Placeholder for Comparisons -->
+        <section id="comparisons">
+            <h2>Comparisons with Other Filters</h2>
+            <p>Further sections will compare the moving average filter to Gaussian and Blackman filters in terms of
+                frequency response, noise reduction, and computational complexity.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
