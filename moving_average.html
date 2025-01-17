@@ -1,74 +1,58 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moving Average Filter</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/main.css"> <!-- Use your portfolio's stylesheet -->
 </head>
 
-<body class="is-preload">
+<body>
+    <header>
+        <h1>Moving Average Filter</h1>
+        <p>Exploring the implementation and analysis of the moving average filter for embedded systems.</p>
+    </header>
 
-    <!-- Header -->
-    <div id="header">
-        <div class="top">
-            <div id="logo">
-                <h1 id="title">Moving Average Filter</h1>
-                <p>Digital Signal Processing for Embedded Systems</p>
-            </div>
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.html" id="back-link"><span class="icon solid fa-arrow-left">Back to
-                                Portfolio</span></a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <!-- Main -->
-    <div id="main">
+    <main>
         <!-- Context Section -->
-        <section id="context" class="two">
-            <div class="container">
-                <header>
-                    <h2>Context: When is a Moving Average Filter Used?</h2>
-                </header>
-                <p>The goal of this project is to implement a noise-reduction digital signal processing algorithm
-                    optimized
-                    for embedded systems, focusing on performance, efficiency, and practical implementation in C.</p>
-                <p>This filter smooths signals by averaging a specified number of points, making it an effective
-                    noise-reduction tool. Its simplicity and efficiency make it ideal for resource-constrained embedded
-                    systems.</p>
-            </div>
+        <section id="context">
+            <h2>Context: When is a Moving Average Filter Used?</h2>
+            <p>The goal of this project is to implement a noise-reduction digital signal processing algorithm optimized
+                for embedded systems, with a focus on performance, efficiency, and practical implementation in C. The
+                project also analyzes the trade-offs and benefits of the chosen algorithm in terms of computational
+                complexity, accuracy, and real-world usability.</p>
+            <p>The algorithm selected for this project is the moving average filter, a fundamental tool in digital
+                signal processing. Its performance will be compared against more sophisticated filters, such as the
+                Gaussian filter and the Blackman filter, to highlight its strengths and limitations in different
+                contexts.</p>
         </section>
 
         <!-- Mathematical Representation -->
-        <section id="math-representation" class="three">
-            <div class="container">
-                <header>
-                    <h2>Mathematical Representation</h2>
-                </header>
-                <p>The moving average filter works by averaging a specified number of points from the input signal to
-                    produce each point in the output signal. Mathematically, it is represented as:</p>
-                <div class="equation-placeholder">
-                    <p>Insert mathematical equation here.</p>
-                </div>
-                <p>Here, <code>M</code> represents the number of points included in the average, <code>x[i]</code> is
-                    the input signal, and <code>y[i]</code> is the output signal. The filter is equivalent to a
-                    convolution with a rectangular pulse.</p>
+        <section id="math-representation">
+            <h2>Mathematical Representation</h2>
+            <p>The moving average filter works by averaging a specified number of points from the input signal to
+                produce each point in the output signal. Mathematically, it is represented as:</p>
+            <div class="equation-placeholder">
+                <p>\[ y[i] = \frac{1}{M} \sum_{j=0}^{M-1} x[i+j] \]</p>
             </div>
+            <p>Here, <code>M</code> represents the number of points included in the average, <code>x[i]</code> is the
+                input signal, and <code>y[i]</code> is the resulting output signal. The moving average filter is
+                equivalent to a convolution with a rectangular pulse, where the pulse has an area of one and a width
+                corresponding to the number of samples averaged.</p>
         </section>
 
-        <!-- C Code Section -->
-        <section id="c-code" class="four">
-            <div class="container">
-                <header>
-                    <h2>Implementation in C</h2>
-                </header>
-                <p>The implementation in C demonstrates the filter's simplicity and efficiency. Below is the key portion
-                    of the code:</p>
-                <pre><code>
+        <!-- Implementation Details -->
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <p>The strength of the moving average filter is its simplicity:</p>
+            <ul>
+                <li>Only addition and subtraction operations are needed; no multiplication is required.</li>
+                <li>Its logic is straightforward.</li>
+                <li>It requires minimal memory.</li>
+            </ul>
+            <p>The implementation in C demonstrates the filter's simplicity and efficiency:</p>
+            <pre><code>
 #include <stdio.h>
 
 void moving_average_filter(float *input, float *output, int num_samples, int window_size) {
@@ -86,82 +70,50 @@ void moving_average_filter(float *input, float *output, int num_samples, int win
         output[i] = accumulator / window_size;
     }
 }
-                </code></pre>
+            </code></pre>
+        </section>
+
+        <!-- Analysis -->
+        <section id="analysis">
+            <h2>Filter Results and Analysis</h2>
+            <p>The frequency response of the moving average filter is shown below:</p>
+            <ul>
+                <li>The first plot demonstrates the original noisy signal compared to the clean signal.</li>
+                <li>The second plot overlays the filtered signal to show the smoothing effect.</li>
+                <li>The third plot shows the filter's magnitude response in the frequency domain, calculated as the
+                    Fourier transform of the rectangular pulse.</li>
+            </ul>
+            <div class="image-placeholder">
+                <p>[Insert time-domain and frequency-domain plots here]</p>
             </div>
         </section>
 
-        <!-- Filter Results -->
-        <section id="filter-results" class="five">
-            <div class="container">
-                <header>
-                    <h2>Filter Results and Analysis</h2>
-                </header>
-                <p>The following plots illustrate the performance of the moving average filter:</p>
-                <ul>
-                    <li>Original noisy signal vs clean signal</li>
-                    <li>Filtered signal overlaid</li>
-                    <li>Frequency response of the filter</li>
-                </ul>
-                <div class="image-placeholder">
-                    <p>Insert time-domain plots here.</p>
-                </div>
-                <div class="image-placeholder">
-                    <p>Insert frequency response plot here.</p>
-                </div>
-            </div>
+        <!-- Trade-offs -->
+        <section id="tradeoffs">
+            <h2>Trade-offs and Frequency Response</h2>
+            <p>The frequency response reveals that the moving average filter is relatively ineffective as a low-pass
+                filter due to its slow roll-off and poor attenuation of higher frequencies. However, as the number of
+                samples averaged increases, the filter performs better by smoothing the signal more effectively and
+                attenuating noise, as seen in the response curve with larger window sizes.</p>
+            <p>The trade-off is that larger sample windows result in slower settling times in the time domain.</p>
         </section>
 
-        <!-- Tradeoffs -->
-        <section id="tradeoffs" class="six">
-            <div class="container">
-                <header>
-                    <h2>Trade-offs and Frequency Response</h2>
-                </header>
-                <p>The moving average filter is computationally efficient but has limited frequency-domain performance
-                    due to its slow roll-off.</p>
-            </div>
+        <!-- Efficient Implementation -->
+        <section id="efficient-implementation">
+            <h2>Efficient Implementation on Embedded Systems</h2>
+            <p>By observing that many terms overlap between consecutive calculations, we can optimize the filter using a
+                recursive implementation:</p>
+            <pre><code>
+y[51] = y[50] + x[54] - x[47];
+            </code></pre>
+            <p>This optimization reduces the time complexity from <code>O(M * N)</code> to <code>O(N)</code>, making it
+                ideal for real-time embedded systems with limited resources.</p>
         </section>
+    </main>
 
-        <!-- Comparisons -->
-        <section id="comparisons" class="seven">
-            <div class="container">
-                <header>
-                    <h2>Comparisons with Other Filters</h2>
-                </header>
-                <p>This section will compare the moving average filter with Gaussian and Blackman filters in terms of
-                    performance and trade-offs.</p>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <div id="footer">
-        <ul class="icons">
-            <li>
-                <a href="mailto:nathan.kim.1440@gmail.com" class="icon solid fa-envelope">
-                    <span class="label">Email</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/in/nathan-kim-221a07270/" class="icon brands fa-linkedin"
-                    target="_blank">
-                    <span class="label">LinkedIn</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/skillyskele" class="icon brands fa-github" target="_blank">
-                    <span class="label">GitHub</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="copyright">
-            <li>&copy; Nathan Kim. All rights reserved.</li>
-            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-        </ul>
-    </div>
-
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <footer>
+        <p>&copy; 2025 Nathan Kim. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
