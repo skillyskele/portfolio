@@ -4,73 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Receiver Project</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Use the main style -->
+    <title>Radio Receiver</title>
+    <link rel="stylesheet" href="assets/css/main.css"> <!-- Use your portfolio's stylesheet -->
 </head>
 
 <body>
     <header>
-        <h1>Analog Radio Receiver</h1>
-        <p>Exploring analog design principles through the creation of a functional AM radio receiver.</p>
+        <h1>Radio Receiver</h1>
+        <p>This project explores the fundamentals of a radio receiver, including an RLC tuner and an AM demodulator.
+            While the complete radio receiver is still in progress, the current work demonstrates important concepts and
+            initial designs. Stay tuned for more updates!</p>
     </header>
 
     <main>
-        <!-- Overview -->
-        <section id="overview">
-            <h2>Project Overview</h2>
-            <p>This project involved designing and building a basic AM radio receiver to deepen my understanding of
-                analog circuits. The receiver consists of an RLC tuning circuit, an RF amplifier, an AM demodulator, and
-                an audio amplifier. The goal was to design a circuit capable of receiving and processing AM signals from
-                a nearby station.</p>
-        </section>
+        <section>
+            <h2>Write-Ups</h2>
+            <p>View the write-ups for the RLC circuit and AM demodulator directly below, or download them for offline
+                reading:</p>
 
-        <!-- Block Diagram -->
-        <section id="block-diagram">
-            <h2>Block Diagram</h2>
-            <p>The following block diagram outlines the stages of the radio receiver:</p>
-            <img src="images/radio_receiver_block_diagram.jpg" alt="Block Diagram of Radio Receiver" />
-        </section>
+            <!-- Embed the RLC Circuit PDF -->
+            <h3>RLC Circuit</h3>
+            <iframe src="assets/documents/RLC_circuit.pdf" width="100%" height="600px" style="border: none;"></iframe>
+            <p><a href="assets/documents/RLC_circuit.pdf" download class="button">Download RLC Circuit Write-Up</a></p>
 
-        <!-- Stages Description -->
-        <section id="stages">
-            <h2>Stages of the Radio Receiver</h2>
-            <ul>
-                <li><strong>Antenna + RLC Circuit:</strong> Captures and tunes the signal to the desired frequency.</li>
-                <li><strong>RF Amplifier:</strong> Boosts the weak signal for further processing.</li>
-                <li><strong>AM Demodulator:</strong> Extracts the audio signal from the modulated carrier wave.</li>
-                <li><strong>Audio Amplifier:</strong> Increases the audio signal strength to drive the speaker.</li>
-            </ul>
-        </section>
-
-        <!-- Circuit Design -->
-        <section id="circuit-design">
-            <h2>Circuit Design</h2>
-            <p>Each stage was designed using standard analog components:</p>
-            <ul>
-                <li><strong>Tuning Circuit:</strong> A variable capacitor and inductor form an RLC circuit tuned to 1
-                    MHz for AM reception.</li>
-                <li><strong>RF Amplifier:</strong> A common-emitter amplifier for signal gain.</li>
-                <li><strong>AM Demodulator:</strong> A diode and RC filter to rectify and demodulate the signal.</li>
-                <li><strong>Audio Amplifier:</strong> A Class A amplifier for clear audio output.</li>
-            </ul>
-        </section>
-
-        <!-- Results -->
-        <section id="results">
-            <h2>Results and Testing</h2>
-            <p>The radio receiver successfully tuned into a local AM station. Challenges included fine-tuning the RLC
-                circuit and minimizing interference from nearby frequencies.</p>
-            <div class="image-placeholder">
-                <p>Insert oscilloscope output or audio playback results here.</p>
-            </div>
-        </section>
-
-        <!-- Key Takeaways -->
-        <section id="takeaways">
-            <h2>Key Takeaways</h2>
-            <p>This project reinforced my understanding of analog circuit design, including resonance in RLC circuits,
-                amplifier design, and the principles of AM demodulation. It also highlighted the importance of component
-                selection and debugging in achieving a functional system.</p>
+            <!-- Embed the AM Demodulator PDF -->
+            <h3>AM Demodulator</h3>
+            <iframe src="assets/documents/AM_Demodulator.pdf" width="100%" height="600px"
+                style="border: none;"></iframe>
+            <p><a href="assets/documents/AM_Demodulator.pdf" download class="button">Download AM Demodulator
+                    Write-Up</a></p>
         </section>
     </main>
 
