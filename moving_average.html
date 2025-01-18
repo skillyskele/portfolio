@@ -11,103 +11,16 @@
 <body>
     <header>
         <h1>Moving Average Filter</h1>
-        <p>Exploring the implementation and analysis of the moving average filter for embedded systems.</p>
+        <p>A detailed write-up exploring the design, implementation, and analysis of a moving average filter for
+            embedded systems.</p>
     </header>
 
     <main>
-        <!-- Context Section -->
-        <section id="context">
-            <h2>Context: When is a Moving Average Filter Used?</h2>
-            <p>The goal of this project is to implement a noise-reduction digital signal processing algorithm optimized
-                for embedded systems, with a focus on performance, efficiency, and practical implementation in C. The
-                project also analyzes the trade-offs and benefits of the chosen algorithm in terms of computational
-                complexity, accuracy, and real-world usability.</p>
-            <p>The algorithm selected for this project is the moving average filter, a fundamental tool in digital
-                signal processing. Its performance will be compared against more sophisticated filters, such as the
-                Gaussian filter and the Blackman filter, to highlight its strengths and limitations in different
-                contexts.</p>
-        </section>
-
-        <!-- Mathematical Representation -->
-        <section id="math-representation">
-            <h2>Mathematical Representation</h2>
-            <p>The moving average filter works by averaging a specified number of points from the input signal to
-                produce each point in the output signal. Mathematically, it is represented as:</p>
-            <div class="equation-placeholder">
-                <p>\[ y[i] = \frac{1}{M} \sum_{j=0}^{M-1} x[i+j] \]</p>
-            </div>
-            <p>Here, <code>M</code> represents the number of points included in the average, <code>x[i]</code> is the
-                input signal, and <code>y[i]</code> is the resulting output signal. The moving average filter is
-                equivalent to a convolution with a rectangular pulse, where the pulse has an area of one and a width
-                corresponding to the number of samples averaged.</p>
-        </section>
-
-        <!-- Implementation Details -->
-        <section id="implementation">
-            <h2>Implementation</h2>
-            <p>The strength of the moving average filter is its simplicity:</p>
-            <ul>
-                <li>Only addition and subtraction operations are needed; no multiplication is required.</li>
-                <li>Its logic is straightforward.</li>
-                <li>It requires minimal memory.</li>
-            </ul>
-            <p>The implementation in C demonstrates the filter's simplicity and efficiency:</p>
-            <pre><code>
-#include <stdio.h>
-
-void moving_average_filter(float *input, float *output, int num_samples, int window_size) {
-    float accumulator = 0.0;
-
-    // Initialize the accumulator with the first `window_size` points
-    for (int i = 0; i < window_size; i++) {
-        accumulator += input[i];
-    }
-    output[window_size / 2] = accumulator / window_size;
-
-    // Sliding window implementation
-    for (int i = window_size / 2 + 1; i < num_samples - window_size / 2; i++) {
-        accumulator = accumulator - input[i - window_size / 2 - 1] + input[i + window_size / 2];
-        output[i] = accumulator / window_size;
-    }
-}
-            </code></pre>
-        </section>
-
-        <!-- Analysis -->
-        <section id="analysis">
-            <h2>Filter Results and Analysis</h2>
-            <p>The frequency response of the moving average filter is shown below:</p>
-            <ul>
-                <li>The first plot demonstrates the original noisy signal compared to the clean signal.</li>
-                <li>The second plot overlays the filtered signal to show the smoothing effect.</li>
-                <li>The third plot shows the filter's magnitude response in the frequency domain, calculated as the
-                    Fourier transform of the rectangular pulse.</li>
-            </ul>
-            <div class="image-placeholder">
-                <p>[Insert time-domain and frequency-domain plots here]</p>
-            </div>
-        </section>
-
-        <!-- Trade-offs -->
-        <section id="tradeoffs">
-            <h2>Trade-offs and Frequency Response</h2>
-            <p>The frequency response reveals that the moving average filter is relatively ineffective as a low-pass
-                filter due to its slow roll-off and poor attenuation of higher frequencies. However, as the number of
-                samples averaged increases, the filter performs better by smoothing the signal more effectively and
-                attenuating noise, as seen in the response curve with larger window sizes.</p>
-            <p>The trade-off is that larger sample windows result in slower settling times in the time domain.</p>
-        </section>
-
-        <!-- Efficient Implementation -->
-        <section id="efficient-implementation">
-            <h2>Efficient Implementation on Embedded Systems</h2>
-            <p>By observing that many terms overlap between consecutive calculations, we can optimize the filter using a
-                recursive implementation:</p>
-            <pre><code>
-y[51] = y[50] + x[54] - x[47];
-            </code></pre>
-            <p>This optimization reduces the time complexity from <code>O(M * N)</code> to <code>O(N)</code>, making it
-                ideal for real-time embedded systems with limited resources.</p>
+        <section>
+            <p>Click the link below to view or download the full write-up:</p>
+            <a href="assets/documents/moving_average_writeup.pdf" target="_blank" class="button">
+                View Full Write-Up
+            </a>
         </section>
     </main>
 
